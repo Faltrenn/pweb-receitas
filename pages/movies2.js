@@ -6,7 +6,7 @@ export default function Movies2() {
     if (!data) return <div>carregando...</div>
     return (
         <div>
-            {data.Search.map((m) => <div>{m.Title} --- {m.Year}</div>)}
+            {data.Search.map((m) => <div> <a href={`movie?id=${m.imdbID}`}>{m.Title} --- {m.Year}</a> </div>)}
         </div>
     )
 }
