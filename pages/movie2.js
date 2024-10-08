@@ -1,16 +1,6 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
 
-export default function Movie() {
-    const router = useRouter();
-    const { id = "tt0076759" } = router.query;
-    const { data, error } = useSWR(id ? `http://www.omdbapi.com/?apikey=83b7b3b9&i=${id}` : null, fetcher);
-
-    if (error) return <div>Falha na requisição...</div>;
-
-    if (!data) return <div>Carregando...</div>;
-    
+export default function Movie2({ data }) {
     return (
         <div>
             <h1>
@@ -62,8 +52,13 @@ export default function Movie() {
     );
 }
 
-async function fetcher(url) {
-    const res = await fetch(url);
-    const json = await res.json();
-    return json;
+export async function getServerSideProps(context) {
+    const { id = "tt0076759" } = context.query;
+    const res = await fetch(`http://www.omdbapi.com/?apikey=83b7b3b9&i=${id}`)
+    const data = await res.json()
+    return {
+        props: {
+            data
+        }
+    }
 }
