@@ -1,14 +1,11 @@
-import Image from 'next/image';
 import useSWR from 'swr';
 
 export default function Movie() {
-    // Utilizando o SWR para buscar dados da API
     const { data, error } = useSWR("https://extreme-ip-lookup.com/json/?key=zcAkJ6e5pcoyCSH6X5qp", fetcher);
 
     if (error) return <div>Falha na requisição...</div>;
     if (!data) return <div>Carregando...</div>;
 
-    // Renderiza os dados na página
     return (
         <div style={{ padding: "20px" }}>
             <h1>Detalhes da Localização</h1>
