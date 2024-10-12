@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bootstrap Color Randomizer</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .square {
+      width: 200px;
+      height: 200px;
+      background-color: #007bff;
+      border: 2px solid #0056b3;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container text-center mt-5">
+    <div id="square" class="square"></div>
+    <button class="btn btn-success mt-3" onclick="randomizeColor()">Randomize Color</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function randomizeColor() {
+      const square = document.getElementById('square');
+      const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      square.style.backgroundColor = randomColor;
+    }
+  </script>
+
+</body>
+</html>
