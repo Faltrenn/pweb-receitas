@@ -1,0 +1,22 @@
+p{
+    color: blue;
+}
+
+.mote {
+    color: red;
+}
+
+.link {
+    &:hover {
+        color: black;
+        text-decoration: none;
+    }
+
+    &:visited {
+        color: green;
+    }
+}
+
+div img.poeta {
+    border-radius: 50%;
+}
