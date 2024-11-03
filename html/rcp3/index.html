@@ -3,16 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
+    <style>
+        #meu_anjo {
+            opacity: 0;
+            transition: opacity .5s;
+        }
+        #meu_anjo.mostrar {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div id="meu_amor"><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div id="meu_anjo"></div>
 </body>
 
 <script>
     function carregarDiv() {
-        let div = document.getElementById("meu amor")
-        div.innerHTML = `<h1>Guinness</h1>`
+        let div = document.getElementById("meu_anjo")
+        if (div.innerHTML == "") {
+            div.innerHTML = `<h1>Guinness</h1>`
+        }
+        div.classList.toggle('mostrar');
     }
 
     let botao = document.getElementById("botaoCarregar")
