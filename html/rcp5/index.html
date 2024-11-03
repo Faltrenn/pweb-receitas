@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div>
+        <a href ="#" id="botaoCarregar">Carregando carnes...</a>
+        <a href ="#" id="botaoArrumar">Arrumar carnes</a>
+        <a href ="#" id="botaoBaguncar">Bagunçar carnes</a>
+    </div>
+    <div id="meu amor"></div>
+</body>
+
+<script>
+    let carnes = ["picanha", "cupim", "porco"]
+
+    const transformar = (item) => {
+        return `<h1>${item}</h1>`
+    }
+
+    const carregarDiv = (carns) => {
+        const div = document.getElementById("meu amor")
+        const carnesHtml = carns.map(transformar)
+        div.innerHTML = `${carnesHtml.join("\n")}`
+    }
+
+    const arrumarArray = () => {
+        carnes.sort((a, b) => a > b)
+        carregarDiv(carnes)
+    }
+
+    const baguncarArray = () => {
+        carnes = carnes
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value)
+            carregarDiv(carnes)
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", ()=> carregarDiv(carnes))
+    let botao2 = document.getElementById("botaoArrumar")
+    botao2.addEventListener("click", arrumarArray)
+    let botao3 = document.getElementById("botaoBaguncar")
+    botao3.addEventListener("click", baguncarArray)
+</script>
+
+</html>
