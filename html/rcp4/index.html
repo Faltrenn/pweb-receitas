@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .beers {
+            background-color: gray;
+            font-size: 14pt;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="botaoCarregar">Carregando cervejas...</button>
+    <button id="botaoArrumar">Arrumar cervejas</button>
+    <button id="botaoBaguncar">Bagunçar cervejas</button>
+    <table id="meu amor"></table>
+
+</body>
+
+<script>
+    let cervejas = ["Guiness", "Desperados", "Becks"]
+
+    function transformar(item) {
+        return `<td class="beers" >${item}</td>`
+    }
+
+    function carregarDiv() {
+        let div = document.getElementById("meu amor")
+        //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`] 
+        let cervejasHtml = cervejas.map(transformar)
+        div.innerHTML = `<tr><th>Beers</th></tr><tr>${cervejasHtml.join("\n")}</tr>`
+    }
+
+    function arrumarArray() {
+        cervejas.sort((a, b) => a > b)
+        carregarDiv()
+    }
+
+    function baguncarArray() {
+        cervejas = cervejas
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value)
+            carregarDiv()
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", carregarDiv)
+    let botao2 = document.getElementById("botaoArrumar")
+    botao2.addEventListener("click", arrumarArray)
+    let botao3 = document.getElementById("botaoBaguncar")
+    botao3.addEventListener("click", baguncarArray)
+</script>
+
+</html>
