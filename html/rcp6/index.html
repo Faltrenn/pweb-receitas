@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Cervejas</title>
+    <style>
+        /* Estilo para o botão */
+        #botaoCarregar {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #botaoCarregar:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilo para a tabela */
+        #cervejasDiv {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        #cervejasDiv th,
+        #cervejasDiv td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #cervejasDiv th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #cervejasDiv tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #cervejasDiv tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <table id="cervejasDiv"></table>
+</body>
+
+<script>
+    let cervejas = [
+        {
+            name: "Guiness",
+            alcohol: "10%",
+            style: "APA",
+            ibu: 40
+        },
+        {
+            name: "Desperados",
+            alcohol: "6%",
+            style: "Lager",
+            ibu: 76
+        },
+        {
+            name: "Becks",
+            alcohol: "5%",
+            style: "Cream Ale",
+            ibu: 25
+        }
+    ]
+
+    //cs é um array de cervejas
+    const carregarDiv = (cs, el="cervejasDiv", cab=["Nome", "Álcool", "Estilo", "Amargor"], itms=["name", "alcohol", "style", "ibu"]) => {
+        const div = document.getElementById(el)
+        const cabecalhos = cab.map((v) => `<th>${v}</th>`)
+        div.innerHTML = `<tr>${cabecalhos.join("\n")}</tr>`
+        const itensHtml = cs.map(item => `<tr>${itms.map((v2)=> `<td>${item[v2]}</td>`).join("\n")}</tr>`)
+        div.innerHTML += itensHtml.join("\n")
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", () => carregarDiv(cervejas))
+</script>
+
+</html>
