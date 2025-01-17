@@ -1,37 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-  <title>ReactZero</title>
-  <link href="style.css" rel="stylesheet" />
+    <title>ReactZero</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id="app"></div>
-  <script src="libs/react.js"></script>
-  <script src="libs/react-dom.js"></script>
-  <script>
-    ReactDOM.render(
-      React.createElement(
-        "table",
-        {id: "tabela", border: "1"},
-        React.createElement(
-          "tr",
-          null,
-          React.createElement("th", null, "Bebida 1"),
-          React.createElement("th", null, "Bebida2"),
-        ),
-        React.createElement(
-          "tr",
-          null,
-          React.createElement("td", null, "Pepsi"),
-          React.createElement("td", null, "Cajuína"),
-        ),
-      ),
-      document.getElementById("app"),
-    );
-  </script>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script>
+        // Dados da tabela
+        const dados = [
+            { nome: "Emanuel", sobrenome: "Medeiros", telefone: "84 98765-4321" },
+            { nome: "Ana", sobrenome: "Pereira", telefone: "84 91234-5678" },
+            { nome: "Lucas", sobrenome: "Alves", telefone: "84 99876-5432" }
+        ];
+
+        // Função para criar elementos dinamicamente
+        const App = React.createElement(
+            'div',
+            null,
+            // Título
+            React.createElement(
+                'h1',
+                { id: 'my-heading' },
+                'Tabela de Contatos'
+            ),
+            // Tabela
+            React.createElement(
+                'table',
+                { className: 'custom_table', border: '1' },
+                // Cabeçalho
+                React.createElement(
+                    'thead',
+                    null,
+                    React.createElement('tr', null,
+                        React.createElement('th', null, 'Nome'),
+                        React.createElement('th', null, 'Sobrenome'),
+                        React.createElement('th', null, 'Telefone'),
+                    )
+                ),
+                // Corpo da tabela
+                React.createElement(
+                    'tbody',
+                    null,
+                    dados.map((item, index) => React.createElement(
+                        'tr',
+                        { key: index },
+                        React.createElement('td', null, item.nome),
+                        React.createElement('td', null, item.sobrenome),
+                        React.createElement('td', null, item.telefone),
+                    ))
+                )
+            )
+        );
+
+        ReactDOM.render(App, document.getElementById('app'));
+    </script>
 </body>
 
 </html>
