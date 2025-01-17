@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>ReactZero</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const bebidas = [
+            { nome: "Chateau Margaux", categoria: "Vinho", teorAlcoolico: "13.5%" },
+            { nome: "Johnnie Walker Blue Label", categoria: "Whisky", teorAlcoolico: "40%" },
+            { nome: "Cachaça 51", categoria: "Cachaça", teorAlcoolico: "39%" },
+        ];
+
+        function Cabecalho() {
+            return (
+                <header>
+                    <h1>Catálogo de Bebidas</h1>
+                </header>
+            );
+        }
+
+        function LinhaTabela({ nome, categoria, teorAlcoolico }) {
+            return (
+                <tr>
+                    <td>{nome}</td>
+                    <td>{categoria}</td>
+                    <td>{teorAlcoolico}</td>
+                </tr>
+            );
+        }
+
+        function TabelaBebidas() {
+            return (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Teor Alcoólico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bebidas.map((bebida, index) => (
+                            <LinhaTabela 
+                                key={index} 
+                                nome={bebida.nome} 
+                                categoria={bebida.categoria} 
+                                teorAlcoolico={bebida.teorAlcoolico} 
+                            />
+                        ))}
+                    </tbody>
+                </table>
+            );
+        }
+
+        function App() {
+            const [mostrarTabela, setMostrarTabela] = React.useState(false);
+
+            const alternarTabela = () => {
+                setMostrarTabela(!mostrarTabela);
+            };
+
+            return (
+                <div>
+                    <Cabecalho />
+                    <button onClick={alternarTabela}>
+                        {mostrarTabela ? "Ocultar Tabela" : "Mostrar Tabela"}
+                    </button>
+                    {mostrarTabela && <TabelaBebidas />}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+</body>
+
+</html>
