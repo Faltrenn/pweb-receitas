@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>ReceitaReact - Classes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // Dados atualizados para a tabela
+        const bebidas = [
+            { nome: "Château Margaux", categoria: "Vinho Tinto", teorAlcoolico: "13.5%" },
+            { nome: "Dom Pérignon", categoria: "Champanhe", teorAlcoolico: "12.5%" },
+            { nome: "Lagavulin 16", categoria: "Whisky", teorAlcoolico: "43%" },
+            { nome: "Hendrick's Gin", categoria: "Gin", teorAlcoolico: "41.4%" },
+        ];
+
+        // Cabeçalho com classe
+        class Cabecalho extends React.Component {
+            render() {
+                const { texto } = this.props;
+                return (
+                    <h1 className="titulo">{texto}</h1>
+                );
+            }
+        }
+
+        // Linha da tabela com classe
+        class LinhaTabela extends React.Component {
+            render() {
+                const { nome, categoria, teorAlcoolico } = this.props;
+                return (
+                    <tr>
+                        <td>{nome}</td>
+                        <td>{categoria}</td>
+                        <td>{teorAlcoolico}</td>
+                    </tr>
+                );
+            }
+        }
+
+        // Tabela de bebidas com classe
+        class TabelaBebidas extends React.Component {
+            render() {
+                const { titulo } = this.props;
+                return (
+                    <div>
+                        <Cabecalho texto={titulo} />
+                        <table id="tabela" border="1" aria-label="Tabela de bebidas">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Categoria</th>
+                                    <th>Teor Alcoólico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {bebidas.map((b, index) => (
+                                    <LinhaTabela
+                                        key={index}
+                                        nome={b.nome}
+                                        categoria={b.categoria}
+                                        teorAlcoolico={b.teorAlcoolico}
+                                    />
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                );
+            }
+        }
+
+        // Renderizando o componente no DOM
+        ReactDOM.render(
+            <TabelaBebidas titulo="Tabela de Bebidas" />,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>
