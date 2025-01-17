@@ -14,13 +14,12 @@ th,
 td {
   padding: 10px;
   border: 1px solid #ddd;
-  text-align: left;
 }
 
 th {
   background-color: #f4f4f4;
 }
 
-h1 {
+.titulo {
   color: #007bff;
 }

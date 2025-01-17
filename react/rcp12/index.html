@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>ReceitaReact - 3</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const TabelaBebidas = ({ titulo, cabecalhos, conteudo }) => {
+        return (
+          <div>
+            <h1>{titulo}</h1>
+            <table id="tabela" border="1" className="custom_table">
+              <thead>
+                <tr>
+                  {cabecalhos.map((cabecalho, index) => (
+                    <th key={index}>{cabecalho}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {conteudo.map((linha, indexLinha) => (
+                  <tr key={indexLinha}>
+                    {linha.map((item, indexColuna) => (
+                      <td key={indexColuna}>{item}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+
+      const valoresCabecalhos = [
+        "Nome",
+        "Tipo",
+        "Teor Alcoólico",
+        "País de Origem",
+      ];
+      const valoresConteudo = [
+        ["Château Margaux", "Vinho Tinto", "13.5%", "França"],
+        ["Dom Pérignon", "Champanhe", "12.5%", "França"],
+        ["Lagavulin 16", "Whisky", "43%", "Escócia"],
+        ["Hendrick's Gin", "Gin", "41.4%", "Escócia"],
+        ["Penfolds Grange", "Vinho Tinto", "14.5%", "Austrália"],
+        ["Moët & Chandon", "Champanhe", "12%", "França"],
+        ["Jack Daniel's", "Whisky", "40%", "Estados Unidos"],
+        ["Tanqueray No. Ten", "Gin", "47.3%", "Inglaterra"],
+        ["Château d'Yquem", "Vinho Branco", "14%", "França"],
+        ["Patrón Silver", "Tequila", "40%", "México"],
+      ];
+
+      ReactDOM.render(
+        <TabelaBebidas
+          titulo="Tabela de Bebidas Refinadas"
+          cabecalhos={valoresCabecalhos}
+          conteudo={valoresConteudo}
+        />,
+        document.getElementById("app"),
+      );
+    </script>
+  </body>
+</html>
