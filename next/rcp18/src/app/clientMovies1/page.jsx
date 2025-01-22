@@ -20,7 +20,7 @@ export default function Home() {
 
     try {
       const httpRes = await fetch(
-        `http://www.omdbapi.com/?apikey=f1cbc41e&s=${titleSearchKey}`,
+        `http://www.omdbapi.com/?apikey=13cadabb&s=${titleSearchKey}`,
       );
       const jsonRes = await httpRes.json();
 
